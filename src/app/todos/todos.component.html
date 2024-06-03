@@ -1,9 +1,13 @@
 <div class="container">
   <h1 class="mt-5">Realizar la consigna debajo de este mensaje</h1>
-  <div *ngIf="todos.length > 0; else loading">
+  <div>
+    <input type="text" [(ngModel)]="searchName" placeholder="Nombre a buscar" (input)="onInputChange()">
+    <button class="btn btn-primary" (click)="searchTodos()" *ngIf="showButton">Search</button>
+  </div>
+  <div *ngIf="filteredTodos.length > 0; else noResults">
     <h2>Todos</h2>
     <ul>
-      <li *ngFor="let todo of todos">
+      <li *ngFor="let todo of filteredTodos">
         <p>UserId: {{ todo.userId }}</p>
         <p>Id: {{ todo.id }}</p>
         <p>Title: {{ todo.title }}</p>
@@ -11,13 +15,7 @@
       </li>
     </ul>
   </div>
-  
-  <ng-template #loading>
-    <p>Loading invitations...</p>
+  <ng-template #noResults>
+    <p>No hay resultados</p>
   </ng-template>
-</div>
-
-<!-- Html faltante -->
-<div>
-  <button class="btn btn-primary" (click)="randomMethod()">Search</button>
 </div>
