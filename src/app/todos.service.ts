@@ -16,4 +16,8 @@ export class TodosService implements ITodosService{
   getAllTodos(): Observable<TodoReturnModel[]>{
     return this.http.get<any>(`https://jsonplaceholder.typicode.com/todos`);
   }
+
+  getTodo(todoId: number): Observable<TodoReturnModel>{
+    return this.http.get<any>(`https://jsonplaceholder.typicode.com/todos${todoId}`);
+  }
 }

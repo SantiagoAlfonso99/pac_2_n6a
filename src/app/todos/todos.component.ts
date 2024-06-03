@@ -9,13 +9,14 @@ import { TodoReturnModel } from '../returnedModels';
 })
 export class TodosComponent implements OnInit {
   constructor(private todosService: TodosService) {}
-  todos : TodoReturnModel[] = []
+  todos: TodoReturnModel[] = [];
   filteredTodos: TodoReturnModel[] = [];
   searchName: string = "";
   showButton: boolean = false;
+  specificTodo: TodoReturnModel | null = null;
 
   ngOnInit(): void {
-    this.getAllTodos()
+    this.getAllTodos();
   }
 
   searchTodos() {
@@ -33,6 +34,10 @@ export class TodosComponent implements OnInit {
       this.todos = response;
       this.filteredTodos = response;
     });
+  }
+
+  showMoreInfo(todo: TodoReturnModel) {
+    this.specificTodo = todo;
   }
 
   onInputChange() {

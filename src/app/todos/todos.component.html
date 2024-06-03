@@ -8,14 +8,20 @@
     <h2>Todos</h2>
     <ul>
       <li *ngFor="let todo of filteredTodos">
-        <p>UserId: {{ todo.userId }}</p>
-        <p>Id: {{ todo.id }}</p>
         <p>Title: {{ todo.title }}</p>
-        <p>Completed: {{ todo.completed }}</p>
+        <button class="btn btn-info" (click)="showMoreInfo(todo)">Ver más información</button>
       </li>
     </ul>
   </div>
   <ng-template #noResults>
     <p>No hay resultados</p>
   </ng-template>
+
+  <div *ngIf="specificTodo">
+    <h2>Detalles del Todo</h2>
+    <p>UserId: {{ specificTodo.userId }}</p>
+    <p>Id: {{ specificTodo.id }}</p>
+    <p>Title: {{ specificTodo.title }}</p>
+    <p>Completed: {{ specificTodo.completed }}</p>
+  </div>
 </div>
